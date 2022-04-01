@@ -1,0 +1,240 @@
+:root { /*pseudo selector, no existe en el html, root sirve para almacenar elementos css (custom properties)*/
+    --white: #ffffff;
+    --gray: #f5f4f4;
+    --orange: #fdb827;
+    --bluepurple: #21209c;
+    --black: #23120b;
+}
+
+/*font-family: 'Amaranth', sans-serif;
+font-family: 'Quicksand', sans-serif;*/
+
+/*-----Global styles-----*/
+html {
+    font-size: 62.5%;
+    box-sizing: border-box; /*padding, margen o border no afecta el tamaño de un elemento*/
+ }
+
+.services,
+.main-navigation,
+.forms{
+   scroll-snap-align: center;
+   scroll-snap-stop: always;
+}
+
+ *, *:before, *:after { /* el asterisco selecciona todos los elementos, before y after son pseudo selectores, aqui sirven para si en alguna parte del css se utilizan tambien aplicar el box model*/
+    box-sizing: inherit;
+ }
+ 
+ body {
+    font-size: 16px; /*1rem = 10px*/
+    font-family: 'Quicksand', sans-serif;
+    background-image: linear-gradient(to top, var(--gray) 0%, var(--white) 100%);
+ }
+
+ button {
+   background: var(--orange);
+   display: block;
+   color: var(--bluepurple);
+   padding: 7px 15px;
+   margin-top: 1rem;
+   font-size: 2rem;
+   font-weight: bold;
+   text-decoration: none;
+   border-radius: 1rem;
+   width: 80%;
+   text-align: center;
+   border: none;
+}
+
+@media (min-width:768px){
+   button{
+      width:auto;
+   }
+}
+
+button:hover {
+   cursor:pointer;
+}
+
+.shadow{
+   /* offset-x | offset-y | blur-radius | color */
+   -webkit-box-shadow: 0 0 10px #bbbbbb;
+   box-shadow: 0 5 15px 0px #bbbbbb;
+   background: var(--white);
+   padding: 2rem;
+   border-radius: 1rem;
+}
+
+
+ /*-----Utility-----*/
+.w-100 {
+   width: 100%;
+}
+
+@media (min-width:768px){
+   .forms .button {
+      width: auto;
+   }
+}
+
+.flex {
+   display: flex;
+}
+
+.align-right {
+   justify-content: flex-end;
+}
+
+ /*-----Typography styles-----*/
+
+ h1{
+   font-size: 3.8rem;
+   font-family: 'Amaranth', sans-serif;
+ }
+
+ h2{
+   font-size: 2.8rem;
+ }
+
+ h3{
+   font-size: 1.8rem;
+ }
+
+ h1, h2, h3 {
+    text-align: center;
+ }
+
+/*-----Title styles-----*/
+ 
+ .title span {
+    font-size: 2rem;
+    color:var(--orange);
+ }
+
+/*-----Navigation styles-----*/
+ .container {
+   max-width: 90rem;
+   margin: 0 auto;
+ }
+
+ .nav-bg {
+   background-color: var(--bluepurple);
+ }
+
+.main-navigation {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.main-navigation a{
+   color: var(--white);
+   text-decoration: none;
+   font-size: 2rem;
+   font-weight: bold;
+   padding: 1rem;
+}
+
+.main-navigation a:hover{
+   background-color: var(--orange);
+   color: var(--bluepurple);
+   width: 100%;
+   text-align: center;
+}
+
+@media (min-width: 768px) { /*tablet*/
+   .main-navigation{
+      flex-direction: row;
+      justify-content: space-evenly;
+   }
+   .main-navigation a:hover{
+      width: auto;
+   }
+}
+
+/*Solo se coloca lo que quieres cambiar, no es necesario reescribir todo
+480px --> telefono
+768px --> tablet
+1140px --> laptop/compu de escritorio
+1400px --> convencion
+@media (min-width: 480px) { Cuando el width se aplica el siguiente codigo
+   body{
+      background-color:rebeccapurple;
+   }
+} */
+
+/*-----Hero styles-----*/
+.hero {
+   background-image:url(../img/hero.jpg);
+   background-repeat:no-repeat; /*no se repite imagen*/
+   background-size: cover;
+   height: 450px;
+   position: relative; /*para que su hijo se pueda posicionar de forma absoluta*/
+   margin-bottom: 1rem;
+}
+
+.content-hero { /*intento posicionar content-hero entonces el padre (en este caso hero) debe contar con posicion relativa*/
+   position: absolute;
+   /* background-color: rgba(253, 184, 39,0.2); el cuarto valor corresponde a la transparencia desde 0 (color nulo) hasta 1(color total)*/
+   background-color: rgb(33 32 156 / 40%); /*nueva sintaxis*/
+   width:100%;
+   height:100%;
+   /*con esto indicamos posicion en el mapa (coordenadas), con todos en 0 se expande en todo el mapa*/
+   /*coordenadas: top, bottom, left, right, nuestro padre vendria siendo como el mapa*/
+   
+   /*Alineas vertical y horizontalmente*/
+   display: flex;
+   flex-direction: column;
+   align-items: center; /*alineas horizontalmente*/
+   justify-content: center; /*alineas verticalmente*/
+}
+
+.content-hero h2, .content-hero p {
+   color: var(--white);
+}
+
+/*-----Services styles-----*/
+@media (min-width:768px){
+   .services {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr; /* = 33.3% 33.3% 33.3% = repeat(3, 1fr)/
+      /*     Rows / Columns
+      grid: 200px / 33.3% 33.3% 33.3%;
+      grid-template-rows: 200px 400px 200px;*/
+      column-gap: 1rem;
+   }
+}
+
+.service {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.service h3{
+   color: var(--bluepurple);
+   font-weight: bold;
+}
+
+.service p {
+   line-height: 2; /*interlineado*/
+   text-align: center;
+}
+
+.service .icons {
+   height:10rem;
+   width:10rem;
+   background-color: var(--orange);
+   border-radius: 50%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+/*-----Footer styles-----*/
+.footer {
+   text-align: center;
+}
+
+
